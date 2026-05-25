@@ -195,13 +195,14 @@ body {
 .main-tab:hover { opacity: 1; background: rgba(255,255,255,0.2); }
 .main-tab.active {
   opacity: 1;
-  color: var(--header-text);
+  color: #0a1a6e;
   background: var(--bg);
   border: 1px solid var(--border);
   border-bottom: 1px solid var(--bg);
   margin-bottom: -1px;
 }
-[data-theme="dark"] .main-tab.active { background: var(--bg); border-bottom-color: var(--bg); }
+[data-theme="dark"] .main-tab.active { color: #99b8ff; }
+[data-theme="dark"] .main-tab.active { background: var(--bg); border-bottom-color: var(--bg); color: #99b8ff; }
 
 .main { padding: 20px 16px; max-width: 100%; margin: 0 auto; }
 .tab-panel { display: none; }
