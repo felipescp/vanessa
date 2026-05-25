@@ -1,0 +1,1154 @@
+<html lang="pt-BR" data-theme="light">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Vanessa — TJCE</title>
+<link rel="icon" href="./faixa.ico" type="image/x-icon">
+<link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700;800;900&family=DM+Sans:ital,wght@0,300;0,400;0,500;0,600;1,400&display=swap" rel="stylesheet">
+<style>
+:root {
+  /* Backgrounds: cool blue tint */
+  --bg: #e8f0ff;
+  --bg2: #d0e0ff;
+  --bg3: #b8cfff;
+  --surface: #ffffff;
+  --surface2: #f0f4ff;
+  --border: #99b8ff;
+  --border2: #6699ff;
+  --text: #0a0f2e;
+  --text2: #1a2a7a;
+  --text3: #5570b0;
+
+  /* Shock pink accent */
+  --accent: #ff007f;
+  --accent2: #cc0066;
+  --accent-light: #ffe0f0;
+
+  /* Shock blue accent */
+  --blue: #0066ff;
+  --blue2: #0044cc;
+  --blue-light: #ddeaff;
+
+  /* Header: shock pink + shock blue gradient */
+  --header-bg: linear-gradient(120deg, #ff007f 0%, #0066ff 100%);
+  --header-text: #ffffff;
+
+  --shadow: 0 2px 14px rgba(0,102,255,0.22);
+  --shadow-lg: 0 8px 32px rgba(255,0,127,0.18);
+  --radius: 10px;
+  --radius-lg: 16px;
+}
+
+[data-theme="dark"] {
+  --bg: #060818;
+  --bg2: #0a0f28;
+  --bg3: #0e1640;
+  --surface: #0c1230;
+  --surface2: #101838;
+  --border: #1a2e70;
+  --border2: #2244aa;
+  --text: #e8f0ff;
+  --text2: #99b8ff;
+  --text3: #5570b0;
+  --accent: #ff1a8c;
+  --accent2: #cc0066;
+  --accent-light: #3d0020;
+  --blue: #3388ff;
+  --blue2: #0066ff;
+  --blue-light: #071030;
+  --header-bg: linear-gradient(120deg, #cc0055 0%, #0044bb 100%);
+  --header-text: #ffffff;
+  --shadow: 0 2px 14px rgba(0,0,0,0.5);
+  --shadow-lg: 0 8px 32px rgba(0,0,0,0.6);
+}
+
+* { box-sizing: border-box; margin: 0; padding: 0; }
+
+body {
+  font-family: 'DM Sans', sans-serif;
+  background: var(--bg);
+  color: var(--text);
+  min-height: 100vh;
+  transition: background 0.3s, color 0.3s;
+}
+
+.header {
+  background: var(--header-bg);
+  border-bottom: 2px solid #ff007f;
+  padding: 0 24px;
+  position: sticky;
+  top: 0;
+  z-index: 100;
+  box-shadow: 0 2px 18px rgba(255,0,127,0.25), 0 1px 8px rgba(0,102,255,0.2);
+}
+.header-top {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 12px 0 8px;
+  gap: 16px;
+  flex-wrap: wrap;
+}
+.header-center {
+  display: flex;
+  align-items: center;
+  gap: 20px;
+  flex: 1;
+  justify-content: center;
+  flex-wrap: wrap;
+}
+.countdown-box {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  background: transparent;
+  border: 1px solid var(--header-text);
+  border-radius: 99px;
+  padding: 6px 14px;
+}
+.countdown-box .icon { font-size: 14px; }
+.countdown-label {
+  font-family: 'Outfit', sans-serif;
+  font-size: 12px;
+  font-weight: 600;
+  color: var(--header-text);
+}
+.countdown-days {
+  font-family: 'Outfit', sans-serif;
+  font-size: 20px;
+  font-weight: 900;
+  color: var(--header-text);
+  line-height: 1;
+}
+.exam-date {
+  font-family: 'Outfit', sans-serif;
+  font-size: 12px;
+  font-weight: 600;
+  color: var(--header-text);
+  background: transparent;
+  border: 1px solid var(--header-text);
+  border-radius: 99px;
+  padding: 5px 12px;
+}
+.header-actions { display: flex; align-items: center; gap: 8px; }
+.btn-icon {
+  width: 34px; height: 34px;
+  border: 1px solid var(--border);
+  border-radius: 8px;
+  background: var(--surface2);
+  cursor: pointer;
+  display: flex; align-items: center; justify-content: center;
+  font-size: 15px;
+  color: var(--text2);
+  transition: all 0.2s;
+}
+.btn-icon:hover { background: var(--bg3); border-color: var(--border2); }
+
+.header-progress {
+  padding: 0 0 10px;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+.progress-track {
+  flex: 1;
+  height: 5px;
+  background: rgba(0,0,0,0.1);
+  border-radius: 99px;
+  overflow: hidden;
+}
+.progress-fill {
+  height: 100%;
+  background: linear-gradient(90deg, #ff007f, #0066ff);
+  border-radius: 99px;
+  transition: width 0.5s ease;
+}
+.progress-text {
+  font-family: 'Outfit', sans-serif;
+  font-size: 11px;
+  font-weight: 700;
+  color: var(--header-text);
+  white-space: nowrap;
+}
+
+.main-tabs {
+  display: flex;
+  gap: 2px;
+  padding: 8px 0 0;
+  border-top: 1px solid rgba(0,0,0,0.05);
+  overflow-x: auto;
+}
+.main-tab {
+  font-family: 'Outfit', sans-serif;
+  font-size: 12px;
+  font-weight: 600;
+  padding: 7px 14px;
+  border: none;
+  background: none;
+  color: var(--header-text);
+  opacity: 0.6;
+  cursor: pointer;
+  border-radius: 8px 8px 0 0;
+  transition: all 0.2s;
+  white-space: nowrap;
+}
+.main-tab:hover { opacity: 1; background: rgba(255,255,255,0.2); }
+.main-tab.active {
+  opacity: 1;
+  color: var(--header-text);
+  background: var(--bg);
+  border: 1px solid var(--border);
+  border-bottom: 1px solid var(--bg);
+  margin-bottom: -1px;
+}
+[data-theme="dark"] .main-tab.active { background: var(--bg); border-bottom-color: var(--bg); }
+
+.main { padding: 20px 16px; max-width: 100%; margin: 0 auto; }
+.tab-panel { display: none; }
+.tab-panel.active { display: block; }
+
+.week-tabs { display: flex; gap: 4px; flex-wrap: wrap; margin-bottom: 16px; }
+.week-tab {
+  font-family: 'Outfit', sans-serif;
+  font-size: 11px;
+  font-weight: 700;
+  padding: 5px 12px;
+  border: 1px solid var(--border);
+  background: var(--surface);
+  color: var(--text3);
+  cursor: pointer;
+  border-radius: 99px;
+  transition: all 0.2s;
+}
+.week-tab:hover { border-color: var(--accent); color: var(--accent); }
+.week-tab.active { background: linear-gradient(90deg, #ff007f, #0066ff); border-color: transparent; color: white; box-shadow: 0 2px 10px rgba(255,0,127,0.35); }
+
+.view-toggle {
+  display: flex;
+  gap: 4px;
+  background: var(--bg2);
+  border: 1px solid var(--border);
+  border-radius: 99px;
+  padding: 3px;
+  margin-bottom: 16px;
+  width: fit-content;
+}
+.view-btn {
+  font-family: 'Outfit', sans-serif;
+  font-size: 11px;
+  font-weight: 600;
+  padding: 5px 14px;
+  border: none;
+  border-radius: 99px;
+  background: none;
+  color: var(--text3);
+  cursor: pointer;
+  transition: all 0.2s;
+}
+.view-btn.active { background: var(--surface); color: var(--text); box-shadow: var(--shadow); }
+
+.days-grid {
+  display: grid;
+  grid-template-columns: repeat(6, 1fr);
+  gap: 8px;
+}
+.day-column {
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  overflow: hidden;
+  min-width: 0;
+  box-shadow: 0 1px 6px rgba(0,102,255,0.12);
+}
+.day-header {
+  padding: 7px 10px;
+  background: linear-gradient(90deg, #ffe0f0 0%, #ddeaff 100%);
+  border-bottom: 1px solid #99b8ff;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 4px;
+}
+.day-name {
+  font-family: 'Outfit', sans-serif;
+  font-weight: 700;
+  font-size: 11px;
+  color: var(--text);
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+.day-count {
+  font-family: 'Outfit', sans-serif;
+  font-size: 9px;
+  font-weight: 600;
+  color: var(--text3);
+  background: var(--bg3);
+  padding: 1px 5px;
+  border-radius: 99px;
+  flex-shrink: 0;
+}
+.day-body { padding: 8px; display: flex; flex-direction: column; gap: 7px; }
+
+/* Status visual on card */
+.study-card {
+  background: var(--surface2);
+  border: 1px solid var(--border);
+  border-left: 3px solid #0066ff;
+  border-radius: 8px;
+  padding: 8px 8px 8px 10px;
+  position: relative;
+  transition: all 0.2s;
+  cursor: grab;
+  display: flex;
+  align-items: flex-start;
+  gap: 8px;
+}
+.study-card:hover { box-shadow: 0 3px 14px rgba(0,102,255,0.22); border-color: var(--border2); }
+.study-card.dragging { opacity: 0.4; transform: rotate(2deg); }
+.study-card.status-finalizado {
+  border-left: 3px solid #ff007f;
+  background: linear-gradient(135deg, #ffe0f022, #ddeaff22);
+  border-color: #ffb3d9;
+}
+.study-card.status-finalizado .card-topic { text-decoration: line-through; opacity: 0.5; }
+[data-theme="dark"] .study-card.status-finalizado { background: linear-gradient(135deg, #3d002022, #07103022); border-color: #660033; }
+.card-check {
+  flex-shrink: 0;
+  width: 22px;
+  height: 22px;
+  border-radius: 50%;
+  border: 2px solid #0066ff;
+  background: #ddeaff;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 11px;
+  transition: all 0.2s;
+  margin-top: 2px;
+}
+.card-check:hover { border-color: #ff007f; background: #ffe0f0; }
+.card-check.checked {
+  background: linear-gradient(135deg, #ff007f, #0066ff);
+  border-color: #ff007f;
+  color: white;
+  box-shadow: 0 2px 8px rgba(255,0,127,0.4);
+}
+[data-theme="dark"] .card-check { border-color: #1a2e70; background: #071030; }
+[data-theme="dark"] .card-check:hover { border-color: #ff1a8c; background: #3d0020; }
+[data-theme="dark"] .card-check.checked { background: linear-gradient(135deg, #ff007f, #0066ff); border-color: #ff007f; }
+
+.card-body { flex: 1; min-width: 0; }
+
+.card-tags {
+  display: flex;
+  gap: 3px;
+  flex-wrap: wrap;
+  margin-bottom: 4px;
+}
+.tag {
+  font-family: 'Outfit', sans-serif;
+  font-size: 9px;
+  font-weight: 700;
+  padding: 1px 6px;
+  border-radius: 99px;
+  letter-spacing: 0.2px;
+  white-space: nowrap;
+  max-width: 100%;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+.tag-critica { background: #fee2e2; color: #dc2626; border: 1px solid #fca5a5; }
+.tag-prioridade { background: #fef3c7; color: #d97706; border: 1px solid #fcd34d; }
+.tag-residual { background: #f1f5f9; color: #64748b; border: 1px solid #cbd5e1; }
+[data-theme="dark"] .tag-critica { background: #3d1515; color: #f87171; border-color: #7f1d1d; }
+[data-theme="dark"] .tag-prioridade { background: #3d2d0a; color: #fbbf24; border-color: #78350f; }
+[data-theme="dark"] .tag-residual { background: #1e2330; color: #94a3b8; border-color: #334155; }
+
+.card-topic {
+  font-size: 11px;
+  font-weight: 600;
+  color: var(--text);
+  line-height: 1.35;
+  margin-bottom: 3px;
+}
+.card-justif {
+  font-size: 10px;
+  color: var(--text3);
+  line-height: 1.35;
+  font-style: italic;
+}
+
+/* Status visual on card */
+.study-card.status-finalizado {
+  border-left: 3px solid #22c55e;
+  background: rgba(34,197,94,0.07);
+  border-color: rgba(34,197,94,0.3);
+}
+.study-card.status-finalizado .card-topic { text-decoration: line-through; opacity: 0.6; }
+[data-theme="dark"] .study-card.status-finalizado { background: rgba(34,197,94,0.06); border-color: rgba(34,197,94,0.22); }
+
+/* KANBAN */
+.kanban-board { display: grid; grid-template-columns: repeat(3, 1fr); gap: 16px; }
+@media (max-width: 900px) { .kanban-board { grid-template-columns: 1fr; } }
+.kanban-col { background: var(--surface); border: 1px solid var(--border); border-radius: var(--radius-lg); min-height: 300px; }
+.kanban-col-header { padding: 14px 16px; border-bottom: 1px solid var(--border); display: flex; align-items: center; gap: 8px; }
+.kanban-col-dot { width: 10px; height: 10px; border-radius: 50%; flex-shrink: 0; }
+.kanban-col-title { font-family: 'Outfit', sans-serif; font-weight: 700; font-size: 13px; color: var(--text); }
+.kanban-col-count { font-family: 'Outfit', sans-serif; font-size: 10px; font-weight: 600; color: var(--text3); background: var(--bg2); padding: 2px 7px; border-radius: 99px; margin-left: auto; }
+.kanban-body { padding: 12px; display: flex; flex-direction: column; gap: 10px; min-height: 200px; }
+.kanban-body.drag-over { background: var(--bg2); border-radius: 0 0 var(--radius-lg) var(--radius-lg); }
+
+.section-title { font-family: 'Outfit', sans-serif; font-weight: 800; font-size: 20px; color: var(--text); margin-bottom: 4px; }
+.section-sub { font-size: 13px; color: var(--text3); margin-bottom: 20px; }
+
+.cycles-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(280px, 1fr)); gap: 16px; }
+.cycle-card { background: var(--surface); border: 1px solid var(--border); border-radius: var(--radius-lg); padding: 16px; }
+.cycle-materia { font-family: 'Outfit', sans-serif; font-weight: 700; font-size: 14px; margin-bottom: 8px; }
+.cycle-bar-wrap { height: 6px; background: var(--bg3); border-radius: 99px; overflow: hidden; margin-bottom: 6px; }
+.cycle-bar { height: 100%; border-radius: 99px; transition: width 0.5s; }
+.cycle-stats { display: flex; justify-content: space-between; font-size: 11px; color: var(--text3); }
+.cycle-topics { margin-top: 10px; display: flex; flex-direction: column; gap: 5px; }
+.cycle-topic-row { display: flex; align-items: center; gap: 8px; font-size: 12px; color: var(--text2); padding: 4px 6px; border-radius: 6px; background: var(--bg2); }
+.cycle-topic-row .dot { width: 7px; height: 7px; border-radius: 50%; flex-shrink: 0; }
+
+.materias-list { display: flex; flex-direction: column; gap: 16px; }
+.materia-section { background: var(--surface); border: 1px solid var(--border); border-radius: var(--radius-lg); overflow: hidden; }
+.materia-section-header { padding: 14px 18px; display: flex; align-items: center; gap: 10px; cursor: pointer; transition: background 0.2s; }
+.materia-section-header:hover { background: linear-gradient(90deg, #ffe0f033, #ddeaff66); }
+.materia-section-color { width: 12px; height: 12px; border-radius: 3px; flex-shrink: 0; }
+.materia-section-name { font-family: 'Outfit', sans-serif; font-weight: 700; font-size: 14px; flex: 1; }
+.materia-section-count { font-size: 11px; color: var(--text3); font-weight: 500; }
+.materia-chevron { font-size: 12px; color: var(--text3); transition: transform 0.2s; }
+.materia-section.open .materia-chevron { transform: rotate(90deg); }
+.materia-topics-list { display: none; padding: 0 16px 12px; flex-direction: column; gap: 6px; }
+.materia-section.open .materia-topics-list { display: flex; }
+.materia-topic-item { padding: 8px 12px; border: 1px solid var(--border); border-radius: 8px; background: var(--surface2); display: flex; align-items: flex-start; gap: 8px; }
+.materia-topic-item .week-badge { font-family: 'Outfit', sans-serif; font-size: 10px; font-weight: 700; background: var(--bg3); color: var(--text3); padding: 2px 7px; border-radius: 99px; white-space: nowrap; }
+.materia-topic-text { font-size: 12px; color: var(--text2); flex: 1; line-height: 1.4; }
+
+.stats-header { display: grid; grid-template-columns: repeat(auto-fit, minmax(160px, 1fr)); gap: 12px; margin-bottom: 24px; }
+.stat-card { background: var(--surface); border: 1px solid var(--border); border-radius: var(--radius-lg); padding: 16px; text-align: center; }
+.stat-number { font-family: 'Outfit', sans-serif; font-weight: 900; font-size: 32px; color: #ff007f; line-height: 1; }
+.stat-label { font-size: 12px; color: var(--text3); margin-top: 4px; }
+.stat-sub { font-family: 'Outfit', sans-serif; font-size: 11px; font-weight: 600; color: var(--text2); margin-top: 2px; }
+.stats-kanban { display: grid; grid-template-columns: repeat(3, 1fr); gap: 16px; }
+@media (max-width: 800px) { .stats-kanban { grid-template-columns: 1fr; } }
+.stats-col { background: var(--surface); border: 1px solid var(--border); border-radius: var(--radius-lg); overflow: hidden; }
+.stats-col-header { padding: 12px 16px; border-bottom: 1px solid var(--border); display: flex; align-items: center; gap: 8px; }
+.stats-col-dot { width: 10px; height: 10px; border-radius: 50%; }
+.stats-col-title { font-family: 'Outfit', sans-serif; font-weight: 700; font-size: 13px; }
+.stats-col-count { font-size: 10px; color: var(--text3); margin-left: auto; background: var(--bg2); padding: 2px 7px; border-radius: 99px; font-family: 'Outfit', sans-serif; font-weight: 600; }
+.stats-col-body { padding: 10px; display: flex; flex-direction: column; gap: 6px; }
+.stats-item { padding: 8px 10px; border: 1px solid var(--border); border-radius: 8px; background: var(--surface2); font-size: 12px; color: var(--text2); display: flex; align-items: center; gap: 8px; line-height: 1.3; }
+.stats-item .dot { width: 7px; height: 7px; border-radius: 50%; flex-shrink: 0; }
+.stats-item-week { font-family: 'Outfit', sans-serif; font-size: 10px; font-weight: 600; color: var(--text3); margin-left: auto; white-space: nowrap; }
+
+.perf-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 20px; }
+@media (max-width: 700px) { .perf-grid { grid-template-columns: 1fr; } }
+.perf-card { background: var(--surface); border: 1px solid var(--border); border-radius: var(--radius-lg); padding: 20px; }
+.perf-card-title { font-family: 'Outfit', sans-serif; font-weight: 700; font-size: 15px; margin-bottom: 16px; display: flex; align-items: center; gap: 8px; }
+.form-row { display: flex; flex-direction: column; gap: 6px; margin-bottom: 14px; }
+.form-label { font-family: 'Outfit', sans-serif; font-size: 12px; font-weight: 600; color: var(--text2); }
+.form-input { font-family: 'DM Sans', sans-serif; font-size: 13px; padding: 8px 12px; border: 1px solid var(--border); border-radius: 8px; background: var(--surface2); color: var(--text); width: 100%; transition: border-color 0.2s; }
+.form-input:focus { outline: none; border-color: var(--accent); }
+.btn-primary { font-family: 'Outfit', sans-serif; font-size: 13px; font-weight: 700; padding: 10px 20px; background: linear-gradient(90deg, #ff007f, #0066ff); color: white; border: none; border-radius: 8px; cursor: pointer; width: 100%; transition: all 0.2s; box-shadow: 0 2px 10px rgba(255,0,127,0.3); }
+.btn-primary:hover { background: linear-gradient(90deg, #cc0066, #0044cc); box-shadow: 0 4px 16px rgba(255,0,127,0.4); }
+
+.perf-log { display: flex; flex-direction: column; gap: 8px; max-height: 350px; overflow-y: auto; padding-right: 4px; }
+.perf-log-item { padding: 10px 12px; border: 1px solid var(--border); border-radius: 8px; background: var(--surface2); display: flex; align-items: flex-start; gap: 10px; }
+.log-date { font-family: 'Outfit', sans-serif; font-size: 10px; font-weight: 700; color: var(--text3); white-space: nowrap; }
+.log-content { flex: 1; font-size: 12px; color: var(--text2); line-height: 1.5; }
+.log-hours { font-family: 'Outfit', sans-serif; font-size: 16px; font-weight: 800; color: var(--accent); white-space: nowrap; }
+
+.err-inputs { display: flex; flex-direction: column; gap: 8px; margin-bottom: 14px; max-height: 280px; overflow-y: auto; }
+.err-row { display: flex; align-items: center; gap: 8px; }
+.err-row label { font-size: 12px; color: var(--text2); flex: 1; font-weight: 500; }
+.err-row input { width: 60px; font-family: 'DM Sans', sans-serif; font-size: 13px; padding: 5px 8px; border: 1px solid var(--border); border-radius: 6px; background: var(--surface2); color: var(--text); text-align: center; }
+
+.modal-overlay { position: fixed; inset: 0; background: rgba(0,0,0,0.5); z-index: 200; display: flex; align-items: center; justify-content: center; padding: 20px; }
+.modal-overlay.hidden { display: none; }
+.modal { background: var(--surface); border: 1px solid var(--border); border-radius: var(--radius-lg); padding: 24px; max-width: 400px; width: 100%; box-shadow: var(--shadow-lg); }
+.modal-title { font-family: 'Outfit', sans-serif; font-weight: 700; font-size: 16px; margin-bottom: 8px; }
+.modal-body { font-size: 13px; color: var(--text2); margin-bottom: 20px; line-height: 1.5; }
+.modal-actions { display: flex; gap: 8px; justify-content: flex-end; }
+.btn-cancel { font-family: 'Outfit', sans-serif; font-size: 13px; font-weight: 600; padding: 8px 18px; border: 1px solid var(--border); border-radius: 8px; background: var(--surface2); color: var(--text2); cursor: pointer; }
+.btn-danger { font-family: 'Outfit', sans-serif; font-size: 13px; font-weight: 700; padding: 8px 18px; border: none; border-radius: 8px; background: #ef4444; color: white; cursor: pointer; }
+
+.empty { padding: 30px; text-align: center; color: var(--text3); font-size: 13px; }
+.toast-container { position: fixed; bottom: 20px; right: 20px; z-index: 300; display: flex; flex-direction: column; gap: 8px; }
+.toast { background: var(--surface); border: 1px solid var(--border); border-radius: 10px; padding: 12px 16px; box-shadow: var(--shadow-lg); font-size: 13px; color: var(--text); font-weight: 500; max-width: 280px; animation: slideIn 0.3s ease; display: flex; align-items: center; gap: 8px; }
+.toast.success { border-left: 3px solid #22c55e; }
+.toast.info { border-left: 3px solid #3b82f6; }
+.toast.danger { border-left: 3px solid #ef4444; }
+@keyframes slideIn { from { transform: translateX(100px); opacity: 0; } to { transform: translateX(0); opacity: 1; } }
+
+::-webkit-scrollbar { width: 6px; height: 6px; }
+::-webkit-scrollbar-track { background: transparent; }
+::-webkit-scrollbar-thumb { background: var(--border2); border-radius: 99px; }
+
+@media (max-width: 600px) {
+  .main { padding: 12px; }
+  .header { padding: 0 12px; }
+  .header-center { display: none; }
+  .days-grid { grid-template-columns: 1fr; }
+}
+</style>
+</head>
+<body>
+
+<header class="header">
+  <div class="header-top">
+    <div style="display:flex; align-items:center; gap:15px;">
+      <h1 style="display:flex; align-items:center; gap:12px; margin:0; font-family:'Outfit',sans-serif; font-weight:800; color:var(--header-text);">
+        Vanessa <img 
+            src="./faixa.png" 
+            alt="Pipoca"
+            style="
+                width:36px;
+                height:36px;
+                object-fit:contain;
+                image-rendering:auto;
+            "
+        >
+        
+        <span style="font-weight:200;">| TJCE</span>
+      </h1>
+    </div>
+    <div class="header-center">
+      <div class="countdown-box">
+        <span class="icon">⏳</span>
+        <div>
+          <div class="countdown-label">DIAS PARA A PROVA</div>
+          <div class="countdown-days" id="countdown-days">—</div>
+        </div>
+      </div>
+      <div class="exam-date">📅 Prova: 09/08/2026</div>
+    </div>
+    <div class="header-actions">
+      <button class="btn-icon" id="dark-toggle" title="Alternar modo escuro">🌙</button>
+    </div>
+  </div>
+  <div class="header-progress">
+    <div class="progress-track">
+      <div class="progress-fill" id="global-progress-bar" style="width:0%"></div>
+    </div>
+    <div class="progress-text" id="global-progress-text">0% concluído</div>
+  </div>
+  <div class="main-tabs">
+    <button class="main-tab active" data-tab="planejamento">📅 Planejamento Semanal</button>
+    <button class="main-tab" data-tab="ciclos">🔄 Ciclos de Estudo</button>
+    <button class="main-tab" data-tab="materias">📚 Matérias</button>
+    <button class="main-tab" data-tab="estatisticas">📊 Estatísticas</button>
+    <button class="main-tab" data-tab="desempenho">⏱ Tempo & Desempenho</button>
+  </div>
+</header>
+
+<main class="main">
+
+  <div class="tab-panel active" id="tab-planejamento">
+    <div style="display:flex; align-items:center; justify-content:space-between; flex-wrap:wrap; gap:12px; margin-bottom:16px;">
+      <div>
+        <div class="section-title">Planejamento Semanal</div>
+        <div class="section-sub">11 semanas até a prova — arraste os cards para reorganizar</div>
+      </div>
+      <div class="view-toggle">
+        <button class="view-btn active" id="btn-view-dias">📅 Dias</button>
+        <button class="view-btn" id="btn-view-kanban">📋 Kanban</button>
+      </div>
+    </div>
+    <div class="week-tabs" id="week-tabs"></div>
+    <div id="week-content"></div>
+  </div>
+
+  <div class="tab-panel" id="tab-ciclos">
+    <div class="section-title">Ciclos de Estudo</div>
+    <div class="section-sub">Organização estratégica por relevância e incidência na FCC</div>
+    <div class="cycles-grid" id="cycles-grid"></div>
+  </div>
+
+  <div class="tab-panel" id="tab-materias">
+    <div class="section-title">Matérias do Edital</div>
+    <div class="section-sub">Todos os tópicos organizados por disciplina</div>
+    <div class="materias-list" id="materias-list"></div>
+  </div>
+
+  <div class="tab-panel" id="tab-estatisticas">
+    <div class="section-title">Estatísticas de Incidência</div>
+    <div class="section-sub">Acompanhamento visual do progresso por status</div>
+    <div class="stats-header" id="stats-header"></div>
+    <div class="stats-kanban" id="stats-kanban"></div>
+  </div>
+
+  <div class="tab-panel" id="tab-desempenho">
+    <div class="section-title">Tempo de Estudos & Desempenho</div>
+    <div class="section-sub">Registro diário manual de horas e questões</div>
+    <div class="perf-grid">
+      <div class="perf-card">
+        <div class="perf-card-title">⏱ Registrar Sessão de Estudo</div>
+        <div class="form-row">
+          <label class="form-label">Data</label>
+          <input type="date" class="form-input" id="perf-date">
+        </div>
+        <div class="form-row">
+          <label class="form-label">Horas estudadas (ex: 02:30)</label>
+          <input type="text" class="form-input" id="perf-hours" placeholder="00:00">
+        </div>
+        <div class="form-row">
+          <label class="form-label">Total de questões respondidas</label>
+          <input type="number" class="form-input" id="perf-questions" placeholder="0" min="0">
+        </div>
+        <div class="form-row">
+          <label class="form-label">Erros por disciplina</label>
+          <div class="err-inputs" id="err-inputs"></div>
+        </div>
+        <div class="form-row">
+          <label class="form-label">Observações</label>
+          <textarea class="form-input" id="perf-notes" rows="2" placeholder="Como foi a sessão?"></textarea>
+        </div>
+        <button class="btn-primary" onclick="saveSession()">💾 Salvar Sessão</button>
+      </div>
+      <div class="perf-card">
+        <div class="perf-card-title">📈 Histórico de Sessões</div>
+        <div style="display:grid; grid-template-columns:1fr 1fr 1fr; gap:8px; margin-bottom:16px;">
+          <div style="text-align:center; background:var(--bg2); border-radius:10px; padding:12px;">
+            <div class="stat-number" style="font-size:24px" id="total-hours-display">0h</div>
+            <div class="stat-label">Total horas</div>
+          </div>
+          <div style="text-align:center; background:var(--bg2); border-radius:10px; padding:12px;">
+            <div class="stat-number" style="font-size:24px" id="total-questions-display">0</div>
+            <div class="stat-label">Questões</div>
+          </div>
+          <div style="text-align:center; background:var(--bg2); border-radius:10px; padding:12px;">
+            <div class="stat-number" style="font-size:24px" id="total-accuracy-display">—</div>
+            <div class="stat-label">Aproveit.</div>
+          </div>
+        </div>
+        <div class="perf-log" id="perf-log">
+          <div class="empty">Nenhuma sessão registrada ainda.</div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+</main>
+
+<div class="modal-overlay hidden" id="modal-delete">
+  <div class="modal">
+    <div class="modal-title">🗑 Excluir tópico?</div>
+    <div class="modal-body" id="modal-delete-body">Tem certeza que deseja excluir este tópico?</div>
+    <div class="modal-actions">
+      <button class="btn-cancel" onclick="closeModal('modal-delete')">Cancelar</button>
+      <button class="btn-danger" id="modal-delete-confirm">Excluir</button>
+    </div>
+  </div>
+</div>
+
+<div class="toast-container" id="toast-container"></div>
+
+<script>
+const EXAM_DATE = new Date('2026-08-09T08:00:00');
+
+const MATERIAS_COLORS = {
+  'DIREITO CONSTITUCIONAL': '#3b6bca',
+  'DIREITO ADMINISTRATIVO': '#7b2d8b',
+  'DIREITO CIVIL': '#1a8c5b',
+  'DIREITO PROCESSUAL CIVIL': '#0e7a8e',
+  'DIREITO PENAL': '#c0392b',
+  'DIREITO PROCESSUAL PENAL': '#e67e22',
+  'LÍNGUA PORTUGUESA': '#8e44ad',
+  'RACIOCÍNIO LÓGICO MATEMÁTICO': '#2980b9',
+  'LEGISLAÇÃO LOCAL': '#27ae60',
+  'DIREITOS PCD': '#16a085',
+  'REVISÃO GERAL': '#7f8c8d',
+  'DESCANSO': '#95a5a6',
+  'LEGISLAÇÃO E PCD': '#1a9b7b',
+  'CONHECIMENTOS GERAIS': '#8e44ad',
+  'DIREITO CIVIL / PROCESSUAL CIVIL': '#1a8c5b',
+  'DIREITO CONSTITUCIONAL / ADMINISTRATIVO': '#3b6bca',
+};
+
+function getColorForMateria(m) {
+  const c = MATERIAS_COLORS[m];
+  if (c) return c;
+  for (const [k, v] of Object.entries(MATERIAS_COLORS)) {
+    if (m.includes(k) || k.includes(m)) return v;
+  }
+  return '#6b7280';
+}
+
+const RAW_SCHEDULE = {
+  "semana_1": {"segunda":[{"materia":"DIREITO CONSTITUCIONAL","topico":"Direitos e Garantias Fundamentais","prioridade":"CRÍTICA","justificativa":"Coração da prova (44,09%). Exige domínio absoluto.","metodo_sugerido":"Lei Seca / Questões"},{"materia":"DIREITO ADMINISTRATIVO","topico":"Licitações e Contratos (Lei 14.133)","prioridade":"CRÍTICA","justificativa":"Líder absoluto na FCC (22%). Obrigatório amplo domínio da nova lei.","metodo_sugerido":"Lei Seca / Esquemas"}],"terca":[{"materia":"DIREITO PROCESSUAL CIVIL","topico":"Procedimento Comum (Petição Inicial a Julgamento)","prioridade":"CRÍTICA","justificativa":"Top 1 da disciplina (18,80%). Foco em inépcia e respostas do réu.","metodo_sugerido":"Lei Seca / Questões"},{"materia":"DIREITO CIVIL","topico":"Pessoas Naturais e Jurídicas","prioridade":"CRÍTICA","justificativa":"Eixo base (15,56%). Intensa cobrança em capacidade e desconsideração da personalidade.","metodo_sugerido":"Doutrina / Questões"}],"quarta":[{"materia":"DIREITO PROCESSUAL PENAL","topico":"Provas e Meios de Obtenção de Prova","prioridade":"CRÍTICA","justificativa":"Quase 20% da prova. Prioridade massiva em prova testemunhal e pericial.","metodo_sugerido":"Lei Seca / Jurisprudência"},{"materia":"DIREITO PENAL","topico":"Crimes contra a Administração Pública","prioridade":"CRÍTICA","justificativa":"Eixo da probidade (26,26%). Condutas de peculato, concussão e corrupção.","metodo_sugerido":"Lei Seca / Questões"}],"quinta":[{"materia":"LÍNGUA PORTUGUESA","topico":"Compreensão, Interpretação e Tipologia Textual","prioridade":"CRÍTICA","justificativa":"Dominante na prova de gerais (32,82%). Intertextualidade e gêneros.","metodo_sugerido":"Resolução de Provas Anteriores"},{"materia":"RACIOCÍNIO LÓGICO MATEMÁTICO","topico":"Argumentação e Associação Lógica","prioridade":"CRÍTICA","justificativa":"Representa 49,15% da disciplina. Dedução a partir de hipóteses é o cerne da FCC.","metodo_sugerido":"Prática Intensiva de Questões"}],"sexta":[{"materia":"LEGISLAÇÃO LOCAL","topico":"Estatuto dos Servidores (Lei 9.826/1974)","prioridade":"CRÍTICA","justificativa":"Norma central para o cargo. Regras de PAD, provimento e vacância.","metodo_sugerido":"Lei Seca / Fichamento"},{"materia":"DIREITOS PCD","topico":"Estatuto da Pessoa com Deficiência (LBI - Lei 13.146)","prioridade":"CRÍTICA","justificativa":"Líder em PCD. Definições de barreiras e regras de capacidade civil.","metodo_sugerido":"Lei Seca / Destaques"}],"sabado":[{"materia":"REVISÃO GERAL","topico":"Revisão Consolidada: Dir. Fundamentais, Licitações e Proc. Comum","prioridade":"PRIORIDADE","justificativa":"Sábado atenuado. Revisão dos temas de Peso 3 mais críticos da semana 1.","metodo_sugerido":"Revisão Ativa / Caderno de Erros"}],"domingo":[]},
+  "semana_2": {"segunda":[{"materia":"DIREITO CONSTITUCIONAL","topico":"Organização dos Poderes, Magistratura e CNJ","prioridade":"CRÍTICA","justificativa":"Pilar institucional (19,41%). Foco estrito em CNJ e regras da Magistratura.","metodo_sugerido":"Lei Seca / Súmulas"},{"materia":"DIREITO ADMINISTRATIVO","topico":"Agentes Públicos e PAD (Lei 8.112/90 e CF)","prioridade":"CRÍTICA","justificativa":"Segundo tema mais cobrado (16,70%). Acumulação de cargos e provimento.","metodo_sugerido":"Lei Seca / Questões"}],"terca":[{"materia":"DIREITO CIVIL","topico":"Fatos Jurídicos: Negócio Jurídico e Invalidade","prioridade":"CRÍTICA","justificativa":"Líder de Civil (17,78%). Diferenciação entre nulidade e anulabilidade.","metodo_sugerido":"Doutrina / Questões"},{"materia":"DIREITO PROCESSUAL CIVIL","topico":"Sujeitos do Processo, Litisconsórcio e Intervenção","prioridade":"CRÍTICA","justificativa":"Representa 16,29% da prova. Distinção de Assistência e Denunciação da Lide.","metodo_sugerido":"Lei Seca / Questões"}],"quarta":[{"materia":"DIREITO PENAL","topico":"Leis Especiais (Abuso de Autoridade e Licitações)","prioridade":"CRÍTICA","justificativa":"Segundo pilar da probidade (24,58%). A Lei 13.869/19 é indispensável.","metodo_sugerido":"Lei Seca / Questões"},{"materia":"DIREITO PROCESSUAL PENAL","topico":"Recursos em Geral e LEP","prioridade":"CRÍTICA","justificativa":"Pilar de encerramento do rito (17,88%). Cabimento de RESE vs Apelação.","metodo_sugerido":"Lei Seca / Esquemas"}],"quinta":[{"materia":"LÍNGUA PORTUGUESA","topico":"Morfossintaxe e Correlação de Tempos/Modos Verbais","prioridade":"PRIORIDADE","justificativa":"Representa 14,68%. Vital para a análise de estruturas complexas.","metodo_sugerido":"Gramática / Questões"},{"materia":"RACIOCÍNIO LÓGICO MATEMÁTICO","topico":"Estrutura Lógica e Sequências","prioridade":"CRÍTICA","justificativa":"Mapeia 27,68% da prova. Reconhecimento de padrões ocultos e ciclos.","metodo_sugerido":"Prática Intensiva"}],"sexta":[{"materia":"LEGISLAÇÃO LOCAL","topico":"Lei de Organização Judiciária do Ceará (LOJ)","prioridade":"CRÍTICA","justificativa":"Fundamental para o tribunal. Competências da Presidência e Órgão Especial.","metodo_sugerido":"Lei Seca"},{"materia":"DIREITO CONSTITUCIONAL","topico":"Ações Constitucionais (Remédios)","prioridade":"PRIORIDADE","justificativa":"Incidência (3,73%), serve de ponte entre Const., Administrativo e Processo.","metodo_sugerido":"Doutrina / Súmulas"}],"sabado":[{"materia":"REVISÃO GERAL","topico":"Bateria de Questões: Penais e Processuais Penais","prioridade":"PRIORIDADE","justificativa":"Dia atenuado. Consolidar crimes da adm. pública e ritos de provas e recursos.","metodo_sugerido":"Simulado Temático"}],"domingo":[]},
+  "semana_3": {"segunda":[{"materia":"DIREITO ADMINISTRATIVO","topico":"Serviços Públicos, Concessões e PPPs","prioridade":"CRÍTICA","justificativa":"10,87% na FCC. Diferenças entre concessão comum e patrocinada/administrativa.","metodo_sugerido":"Lei Seca / Questões"},{"materia":"DIREITO CIVIL","topico":"Contratos em Geral e em Espécie (Locação)","prioridade":"CRÍTICA","justificativa":"13,33% da prova. Locação associada à Lei 8.245/91 é prioritária.","metodo_sugerido":"Lei Seca / Súmulas"}],"terca":[{"materia":"DIREITO PROCESSUAL CIVIL","topico":"Procedimentos Especiais, JEC e Ações Coletivas","prioridade":"CRÍTICA","justificativa":"Maciços 15,04%. Foco cirúrgico na Ação Civil Pública e rito do JEC.","metodo_sugerido":"Lei Seca / Questões"},{"materia":"DIREITO PENAL","topico":"Teoria da Pena e Punibilidade","prioridade":"CRÍTICA","justificativa":"Peso alto (13,97%). Regras de fixação e espécies de PPL/PRD.","metodo_sugerido":"Doutrina / Questões"}],"quarta":[{"materia":"DIREITO PROCESSUAL PENAL","topico":"Prisões e Cautelares","prioridade":"CRÍTICA","justificativa":"15,23% da disciplina. Abordagem focada nas atualizações da 13.964/19.","metodo_sugerido":"Lei Seca / Jurisprudência"},{"materia":"DIREITO PROCESSUAL PENAL","topico":"Tribunal do Júri e Procedimento Comum","prioridade":"CRÍTICA","justificativa":"Representa 16,56%. Divisão de ritos e decisões da primeira fase do Júri.","metodo_sugerido":"Lei Seca / Súmulas"}],"quinta":[{"materia":"LÍNGUA PORTUGUESA","topico":"Reescrita, Clareza, Coesão e Vozes do Discurso","prioridade":"PRIORIDADE","justificativa":"Clássico FCC (13,87%). Confronto e equivalência de frases.","metodo_sugerido":"Prática de Reescrituras"},{"materia":"RACIOCÍNIO LÓGICO MATEMÁTICO","topico":"Orientação Espacial e Calendários","prioridade":"PRIORIDADE","justificativa":"Cobra 13,56% da matéria. Truques de contagem de tempo e datas.","metodo_sugerido":"Questões FCC"}],"sexta":[{"materia":"DIREITO ADMINISTRATIVO","topico":"Atos Administrativos (Atributos e Extinção)","prioridade":"PRIORIDADE","justificativa":"7,48%. Foco em distinguir anulação de revogação e regras de convalidação.","metodo_sugerido":"Doutrina / Questões"},{"materia":"DIREITO CIVIL","topico":"Direito das Coisas (Posse e Propriedade)","prioridade":"CRÍTICA","justificativa":"Tripé de Civil (15,56%). Integrado fortemente com Alienação Fiduciária (9.514).","metodo_sugerido":"Lei Seca / Doutrina"}],"sabado":[{"materia":"REVISÃO GERAL","topico":"Simulado de Acompanhamento (Metade do Bloco)","prioridade":"PRIORIDADE","justificativa":"Afiar velocidade em JEC, Penas, Prisões e Coisas.","metodo_sugerido":"Simulado"}],"domingo":[]},
+  "semana_4": {"segunda":[{"materia":"DIREITO PROCESSUAL CIVIL","topico":"Recursos (Teoria Geral e Em Espécie)","prioridade":"CRÍTICA","justificativa":"10,27% da prova. Cabimentos taxativos do Agravo de Instrumento.","metodo_sugerido":"Lei Seca / Questões"},{"materia":"DIREITO PENAL","topico":"Crimes Contra o Patrimônio","prioridade":"PRIORIDADE","justificativa":"8,38%. Priorizar Roubo e Extorsão, e jurisprudência STJ sobre consumação.","metodo_sugerido":"Súmulas / Questões"}],"terca":[{"materia":"DIREITO CONSTITUCIONAL","topico":"Organização do Estado e Intervenção","prioridade":"PRIORIDADE","justificativa":"Média incidência (12,85%). Pura decoreba das competências da União.","metodo_sugerido":"Mnemônicos / Lei Seca"},{"materia":"DIREITO ADMINISTRATIVO","topico":"Organização Administrativa (Dir/Indireta)","prioridade":"CRÍTICA","justificativa":"7,91%. Distinções entre Autarquias, Fundações e Estatais.","metodo_sugerido":"Doutrina / Questões"}],"quarta":[{"materia":"DIREITO CIVIL","topico":"Direito de Família (Regime de Bens e Alimentos)","prioridade":"PRIORIDADE","justificativa":"10,16%. Integrar com lei de bem de família (8.009).","metodo_sugerido":"Lei Seca / Questões"},{"materia":"DIREITO PROCESSUAL CIVIL","topico":"Atos Processuais (Prazos, Citação e Intimação)","prioridade":"CRÍTICA","justificativa":"10,02%. Alta cobrança nas consequências processuais de nulidades.","metodo_sugerido":"Lei Seca"}],"quinta":[{"materia":"LÍNGUA PORTUGUESA","topico":"Significação, Denotação/Conotação e Sinonímia","prioridade":"PRIORIDADE","justificativa":"11,13% da prova de Gerais. Substituição vocabular em contexto.","metodo_sugerido":"Questões de Provas Anteriores"},{"materia":"DIREITOS PCD","topico":"Promoção da Acessibilidade (Lei 10.098) e Prioridade","prioridade":"PRIORIDADE","justificativa":"Incidência moderada/alta. Classificação de barreiras e assentos.","metodo_sugerido":"Lei Seca"}],"sexta":[{"materia":"DIREITO PROCESSUAL PENAL","topico":"Ação Penal e Jurisdição","prioridade":"PRIORIDADE","justificativa":"8,61%. Foco nas regras de decadência, perempção e legitimidade.","metodo_sugerido":"Lei Seca"},{"materia":"DIREITO PENAL","topico":"Teoria do Crime (Ilicitude e Culpabilidade)","prioridade":"PRIORIDADE","justificativa":"9,50%. Atenção às excludentes de ilicitude e erro de tipo.","metodo_sugerido":"Doutrina / Questões"}],"sabado":[{"materia":"REVISÃO GERAL","topico":"Revisão Penal e Processo Penal","prioridade":"PRIORIDADE","justificativa":"Consolidação rápida de ilicitudes, ação e recursos.","metodo_sugerido":"Exercícios práticos"}],"domingo":[]},
+  "semana_5": {"segunda":[{"materia":"DIREITO ADMINISTRATIVO","topico":"Lei de Improbidade Administrativa (Lei 8.429/92)","prioridade":"PRIORIDADE","justificativa":"7,57%. Total foco nas exigências de dolo trazidas pela Lei 14.230.","metodo_sugerido":"Lei Seca / Questões"},{"materia":"DIREITO CIVIL","topico":"Direito das Sucessões","prioridade":"PRIORIDADE","justificativa":"4,44%. Foco restrito na ordem de vocação hereditária.","metodo_sugerido":"Lei Seca / Exercícios"}],"terca":[{"materia":"DIREITO PROCESSUAL CIVIL","topico":"Processo de Execução, Liquidação e Cumprimento","prioridade":"CRÍTICA","justificativa":"Blocos práticos essenciais (7,26% + 4,51%). Embargos x Exceção.","metodo_sugerido":"Lei Seca / Questões"},{"materia":"DIREITO PENAL","topico":"Princípios, Aplicação da Lei no Tempo e no Espaço","prioridade":"PRIORIDADE","justificativa":"8,38%. Foco em novatio legis, abolitio criminis e insignificância.","metodo_sugerido":"Doutrina / Súmulas"}],"quarta":[{"materia":"DIREITO PROCESSUAL PENAL","topico":"Inquérito Policial e ANPP","prioridade":"RESIDUAL","justificativa":"Baixa incidência (2,65%), mas o ANPP cai muito em cascatas de questões.","metodo_sugerido":"Lei Seca / Jurisprudência"},{"materia":"DIREITO CONSTITUCIONAL","topico":"Da Administração Pública e Servidores","prioridade":"PRIORIDADE","justificativa":"5,78%. Acumulação e teto constitucional. Dialoga com Dir. Administrativo.","metodo_sugerido":"Lei Seca"}],"quinta":[{"materia":"LÍNGUA PORTUGUESA","topico":"Sintaxe, Pontuação e Concordância","prioridade":"PRIORIDADE","justificativa":"Aproximadamente 10%. Alteração de sentido pela vírgula é tema fixo.","metodo_sugerido":"Questões FCC"},{"materia":"LEGISLAÇÃO LOCAL","topico":"Legislação Previdenciária do Ceará","prioridade":"RESIDUAL","justificativa":"Foco restrito a regras de cálculo e alíquotas básicas.","metodo_sugerido":"Lei Seca Leitura Dinâmica"}],"sexta":[{"materia":"DIREITO ADMINISTRATIVO","topico":"Poderes da Administração e Polícia","prioridade":"PRIORIDADE","justificativa":"5,13%. Excesso/Desvio de poder e ciclo de polícia.","metodo_sugerido":"Doutrina / Questões"},{"materia":"DIREITO CIVIL","topico":"Responsabilidade Civil","prioridade":"PRIORIDADE","justificativa":"4,13%. Repassar casos de responsabilidade objetiva do CC.","metodo_sugerido":"Lei Seca / Súmulas"}],"sabado":[{"materia":"REVISÃO GERAL","topico":"Ajuste Fino: Execução, Improbidade e Adm Pública","prioridade":"PRIORIDADE","justificativa":"Sábado leve. Consolidar os temas operacionais mais complexos da semana 5.","metodo_sugerido":"Esquemas / Questões"}],"domingo":[]},
+  "semana_6": {"segunda":[{"materia":"DIREITO CONSTITUCIONAL","topico":"Controle de Constitucionalidade","prioridade":"RESIDUAL","justificativa":"Baixa incidência (2,96%), focar apenas em legitimidade do Art. 103.","metodo_sugerido":"Lei Seca Estrita"},{"materia":"DIREITO CIVIL","topico":"LINDB","prioridade":"PRIORIDADE","justificativa":"6,67%. Foco em Segurança Jurídica e Eficiência.","metodo_sugerido":"Lei Seca"}],"terca":[{"materia":"DIREITO PROCESSUAL CIVIL","topico":"Competência e Tutelas","prioridade":"PRIORIDADE","justificativa":"5,76%. Evitar erros clássicos de competência absoluta x relativa e tutela.","metodo_sugerido":"Lei Seca / Súmulas"},{"materia":"DIREITO PENAL","topico":"Crimes contra Pessoa, Dignidade e Fé Pública","prioridade":"RESIDUAL","justificativa":"Baixa incidência. Leitura veloz das qualificadoras e conceitos de falso.","metodo_sugerido":"Lei Seca / Resumos"}],"quarta":[{"materia":"DIREITO PROCESSUAL PENAL","topico":"JECRIM e Procedimentos Especiais","prioridade":"CRÍTICA","justificativa":"5,96%. O JECRIM é maioria absoluta dentre os procedimentos penais na FCC.","metodo_sugerido":"Lei Seca"},{"materia":"DIREITO ADMINISTRATIVO","topico":"Bens Públicos, Intervenção e Controle","prioridade":"RESIDUAL","justificativa":"Pulverizados com incidência abaixo de 2%. Foco apenas em desapropriação e LAI.","metodo_sugerido":"Revisão / Leitura Rápida"}],"quinta":[{"materia":"LÍNGUA PORTUGUESA","topico":"Conectivos, Coesão e Regência","prioridade":"PRIORIDADE","justificativa":"Uso da crase e da preposição. Troca de conectivos altera sentido (FCC adora).","metodo_sugerido":"Prática de Exercícios"},{"materia":"RACIOCÍNIO LÓGICO MATEMÁTICO","topico":"Proporcionalidade e Estatística","prioridade":"RESIDUAL","justificativa":"Apenas 9,60%. Fechamento do conteúdo de Exatas menos incidente.","metodo_sugerido":"Exercícios práticos"}],"sexta":[{"materia":"DIREITO CONSTITUCIONAL","topico":"Funções Essenciais à Justiça (MP/DP)","prioridade":"PRIORIDADE","justificativa":"6,56%. Garantias institucionais e atribuições do MP e Defensoria Pública.","metodo_sugerido":"Lei Seca"},{"materia":"DIREITO CIVIL","topico":"Leis Especiais (Registros, Alienação)","prioridade":"RESIDUAL","justificativa":"1,90% isolado, porém base de Coisas e Contratos.","metodo_sugerido":"Lei Seca"}],"sabado":[{"materia":"REVISÃO GERAL","topico":"SIMULADO METADE DO CURSO","prioridade":"CRÍTICA","justificativa":"Avaliar absorção de todas as disciplinas até o momento. Aferimento métrico.","metodo_sugerido":"Simulado Completo / Correção"}],"domingo":[]},
+  "semana_7": {"segunda":[{"materia":"DIREITO CONSTITUCIONAL","topico":"REVISÃO PROFUNDA: Direitos e Garantias Fundamentais","prioridade":"CRÍTICA","justificativa":"44,09%. Releitura do art. 5º e nacionalidade.","metodo_sugerido":"Leitura Extensiva da CF"},{"materia":"DIREITO ADMINISTRATIVO","topico":"REVISÃO PROFUNDA: Licitações (Lei 14.133)","prioridade":"CRÍTICA","justificativa":"22%. Requer releitura em espiral para memorizar prazos e dispensas.","metodo_sugerido":"Lei Seca / Questões"}],"terca":[{"materia":"DIREITO PROCESSUAL CIVIL","topico":"REVISÃO PROFUNDA: Procedimento Comum","prioridade":"CRÍTICA","justificativa":"18,80%. Resposta do Réu e petição inicial são alicerces da prova.","metodo_sugerido":"Simulado Específico"},{"materia":"DIREITO PENAL","topico":"REVISÃO PROFUNDA: Crimes Contra a Adm. Pública","prioridade":"CRÍTICA","justificativa":"26,26%. Distinção de verbos nucleares (Peculato x Corrupção).","metodo_sugerido":"Mnemônicos / Questões"}],"quarta":[{"materia":"DIREITO PROCESSUAL PENAL","topico":"REVISÃO PROFUNDA: Provas e Meios de Obtenção","prioridade":"CRÍTICA","justificativa":"19,87%. Reforço na jurisprudência recente sobre captação ambiental e perícias.","metodo_sugerido":"Jurisprudência / Doutrina"},{"materia":"DIREITO CIVIL","topico":"REVISÃO PROFUNDA: Pessoas e Fatos Jurídicos","prioridade":"CRÍTICA","justificativa":"Tripé Civil. Prescrição, decadência e invalidades.","metodo_sugerido":"Questões FCC / Lei Seca"}],"quinta":[{"materia":"LÍNGUA PORTUGUESA","topico":"REVISÃO PROFUNDA: Interpretação e Reescritura","prioridade":"PRIORIDADE","justificativa":"Retorno aos maiores blocos textuais da FCC.","metodo_sugerido":"Simulados de 10-15 questões"},{"materia":"RACIOCÍNIO LÓGICO MATEMÁTICO","topico":"REVISÃO PROFUNDA: Associação Lógica","prioridade":"PRIORIDADE","justificativa":"Metade de exatas. Tabelas-verdade e cruzamento de dados.","metodo_sugerido":"Resolução Guiada"}],"sexta":[{"materia":"LEGISLAÇÃO LOCAL","topico":"REVISÃO PROFUNDA: Estatuto do Servidor","prioridade":"PRIORIDADE","justificativa":"Maior pilar da legislação específica local. Memorizar deveres/prazos de PAD.","metodo_sugerido":"Leitura Ativa / Resumos"},{"materia":"DIREITOS PCD","topico":"REVISÃO PROFUNDA: LBI (Lei 13.146)","prioridade":"PRIORIDADE","justificativa":"Eixo das Leis de PCD. Foco em saúde, educação e trabalho.","metodo_sugerido":"Lei Seca"}],"sabado":[{"materia":"REVISÃO GERAL","topico":"Leitura de Caderno de Erros (Ciclo 1)","prioridade":"PRIORIDADE","justificativa":"Rever todas as falhas nos assuntos críticos trabalhados até aqui.","metodo_sugerido":"Caderno de Erros"}],"domingo":[]},
+  "semana_8": {"segunda":[{"materia":"DIREITO CONSTITUCIONAL","topico":"REVISÃO PROFUNDA: Poderes e CNJ","prioridade":"CRÍTICA","justificativa":"19,41%. Art. 92 e seguintes da CF + composição do CNJ.","metodo_sugerido":"Mnemônicos / Questões"},{"materia":"DIREITO ADMINISTRATIVO","topico":"REVISÃO PROFUNDA: Agentes Públicos (Lei 8.112)","prioridade":"CRÍTICA","justificativa":"16,70%. Foco nas formas de provimento originário e derivado.","metodo_sugerido":"Lei Seca"}],"terca":[{"materia":"DIREITO PROCESSUAL CIVIL","topico":"REVISÃO PROFUNDA: Recursos Processuais","prioridade":"CRÍTICA","justificativa":"10,27%. Agravo interno, EDs e efeitos dos recursos.","metodo_sugerido":"Lei Seca / Questões"},{"materia":"DIREITO PENAL","topico":"REVISÃO PROFUNDA: Legislação Penal Especial","prioridade":"CRÍTICA","justificativa":"24,58%. A lei de abuso (13.869) requer muita precisão literal.","metodo_sugerido":"Lei Seca"}],"quarta":[{"materia":"DIREITO PROCESSUAL PENAL","topico":"REVISÃO PROFUNDA: Recursos e LEP","prioridade":"CRÍTICA","justificativa":"17,88%. A Execução Penal define muitos pontos (livramento, falta grave).","metodo_sugerido":"Lei Seca / Questões"},{"materia":"DIREITO CIVIL","topico":"REVISÃO PROFUNDA: Direito das Coisas e Contratos","prioridade":"CRÍTICA","justificativa":"Dois pilares massivos. Foco em usucapião, posse e vícios.","metodo_sugerido":"Lei Seca / Esquemas"}],"quinta":[{"materia":"LÍNGUA PORTUGUESA","topico":"REVISÃO PROFUNDA: Morfossintaxe","prioridade":"PRIORIDADE","justificativa":"14,68%. Ajustar correlações verbais.","metodo_sugerido":"Questões FCC"},{"materia":"RACIOCÍNIO LÓGICO MATEMÁTICO","topico":"REVISÃO PROFUNDA: Estrutura Lógica e Espacial","prioridade":"PRIORIDADE","justificativa":"Treino geral de sequências.","metodo_sugerido":"Questões de Velocidade"}],"sexta":[{"materia":"DIREITO ADMINISTRATIVO","topico":"REVISÃO PROFUNDA: Serviços Públicos e Improbidade","prioridade":"CRÍTICA","justificativa":"Quase 20%. Formas de extinção de concessão e sanções 14.230.","metodo_sugerido":"Lei Seca"},{"materia":"DIREITO PROCESSUAL CIVIL","topico":"REVISÃO PROFUNDA: Sujeitos e JEC/Especiais","prioridade":"CRÍTICA","justificativa":"Microssistemas, prazos em dias úteis no JEC e intervenção de terceiros.","metodo_sugerido":"Lei Seca"}],"sabado":[{"materia":"REVISÃO GERAL","topico":"SIMULADO APENAS ESPECÍFICAS (Peso 3)","prioridade":"CRÍTICA","justificativa":"40 questões simuladas com foco total no ganho de Peso 3.","metodo_sugerido":"Simulado Temporizado"}],"domingo":[]},
+  "semana_9": {"segunda":[{"materia":"DIREITO PENAL","topico":"Sprint: Penas e Teoria do Crime","prioridade":"CRÍTICA","justificativa":"Retomada final focada em prescrição, excludentes e erro de tipo.","metodo_sugerido":"Resumos rápidos / Lei Seca"},{"materia":"DIREITO PROCESSUAL PENAL","topico":"Sprint: Prisões e Júri","prioridade":"CRÍTICA","justificativa":"Alta incidência FCC. Prazos de cautelares e rito do Júri.","metodo_sugerido":"Súmulas / Lei Seca"}],"terca":[{"materia":"DIREITO CONSTITUCIONAL","topico":"Sprint: Org Estado, Remédios e Controle","prioridade":"PRIORIDADE","justificativa":"Competência material e legislativa. Decoreba fina.","metodo_sugerido":"Tabelas/Esquemas"},{"materia":"DIREITO CIVIL","topico":"Sprint: Família e Responsabilidade Civil","prioridade":"PRIORIDADE","justificativa":"Regimes de bens e responsabilidade objetiva.","metodo_sugerido":"Doutrina / Lei Seca"}],"quarta":[{"materia":"DIREITO PROCESSUAL CIVIL","topico":"Sprint: Atos e Execução","prioridade":"CRÍTICA","justificativa":"Nulidades absolutas, citações e meios expropriatórios.","metodo_sugerido":"Lei Seca"},{"materia":"DIREITO ADMINISTRATIVO","topico":"Sprint: Atos, Poderes e Org","prioridade":"PRIORIDADE","justificativa":"Revogação vs Anulação e regime das estatais.","metodo_sugerido":"Doutrina / Esquemas"}],"quinta":[{"materia":"LÍNGUA PORTUGUESA","topico":"Sprint: Revisão Geral","prioridade":"PRIORIDADE","justificativa":"Textos e Gramática aplicados no estilo FCC.","metodo_sugerido":"Questões de Provas Anteriores"},{"materia":"LEGISLAÇÃO E PCD","topico":"Sprint: LOJ e PCD (Misto)","prioridade":"PRIORIDADE","justificativa":"Assegura pontos das leis específicas estaduais (LOJ e LBI).","metodo_sugerido":"Leitura Ativa"}],"sexta":[{"materia":"DIREITO PENAL","topico":"Sprint: Patrimônio e Leis Menores","prioridade":"PRIORIDADE","justificativa":"Roubo, Furto e Extorsão.","metodo_sugerido":"Súmulas STJ / Questões"},{"materia":"DIREITO PROCESSUAL PENAL","topico":"Sprint: Ação Penal, Competência e JECRIM","prioridade":"PRIORIDADE","justificativa":"Prazos em crimes de ação privada e rito sumaríssimo.","metodo_sugerido":"Lei Seca"}],"sabado":[{"materia":"REVISÃO GERAL","topico":"Ajuste Fino - Leitura de Súmulas STF/STJ","prioridade":"PRIORIDADE","justificativa":"Sábado reduzido. Fechar a semana com jurisprudência mapeada.","metodo_sugerido":"Leitura de Súmulas"}],"domingo":[]},
+  "semana_10": {"segunda":[{"materia":"DIREITO ADMINISTRATIVO","topico":"Reta Final: Lei de Licitações (14.133)","prioridade":"CRÍTICA","justificativa":"Tópico Rei da prova (22%). Níveis altíssimos de memorização requeridos.","metodo_sugerido":"Leitura de Destaques"},{"materia":"DIREITO CONSTITUCIONAL","topico":"Reta Final: Direitos Fundamentais (Art. 5º)","prioridade":"CRÍTICA","justificativa":"44% da prova (Peso 3). Não se pode perder nenhuma questão aqui.","metodo_sugerido":"Lei Seca Intensiva"}],"terca":[{"materia":"DIREITO PROCESSUAL CIVIL","topico":"Reta Final: Petição Inicial a Julgamento","prioridade":"CRÍTICA","justificativa":"18,80%. Rever hipóteses de julgamento antecipado e inépcia.","metodo_sugerido":"Esquemas/Fluxogramas"},{"materia":"DIREITO CIVIL","topico":"Reta Final: Negócio Jurídico e Fatos","prioridade":"CRÍTICA","justificativa":"Quase 18% da prova. Foco total em Prazos decadenciais.","metodo_sugerido":"Lei Seca e Resumos"}],"quarta":[{"materia":"DIREITO PENAL","topico":"Reta Final: Crimes contra Adm. Pública","prioridade":"CRÍTICA","justificativa":"26,26%. Maior eixo. Repassar as tabelas de crimes de servidores.","metodo_sugerido":"Súmulas STJ / Tabelas"},{"materia":"DIREITO PROCESSUAL PENAL","topico":"Reta Final: Provas e Interceptação","prioridade":"CRÍTICA","justificativa":"19,87%. Memorizar prazos da Lei 9.296/96 (Interceptação).","metodo_sugerido":"Lei Seca"}],"quinta":[{"materia":"LÍNGUA PORTUGUESA","topico":"Reta Final: Prova Completa","prioridade":"PRIORIDADE","justificativa":"Simulação de 20 questões de gerais (peso 1) para aquecer.","metodo_sugerido":"Provas Completas"},{"materia":"RACIOCÍNIO LÓGICO MATEMÁTICO","topico":"Reta Final: Prova Completa RLM","prioridade":"PRIORIDADE","justificativa":"Maior volume de RLM. Refinar resolução em tempo curto.","metodo_sugerido":"Bateria de 20 questões"}],"sexta":[{"materia":"LEGISLAÇÃO LOCAL","topico":"Reta Final: Estatuto","prioridade":"PRIORIDADE","justificativa":"Revisão visual do Estatuto dos Servidores na semana do teste.","metodo_sugerido":"Leitura de Marcações"},{"materia":"DIREITOS PCD","topico":"Reta Final: Compilado 13.146/10.098/10.048","prioridade":"PRIORIDADE","justificativa":"Garantir gabarito nas questões literais de acessibilidade.","metodo_sugerido":"Lei Seca"}],"sabado":[{"materia":"REVISÃO GERAL","topico":"ÚLTIMO SIMULADO COMPLETO (Gerais e Específicas)","prioridade":"CRÍTICA","justificativa":"Simular as condições exatas da prova do dia 09/08.","metodo_sugerido":"Simulado Presencial/Físico"}],"domingo":[]},
+  "semana_11": {"segunda":[{"materia":"DIREITO CONSTITUCIONAL / ADMINISTRATIVO","topico":"Semana da Prova: CNJ, Magistratura e Prazos","prioridade":"CRÍTICA","justificativa":"Peso 3. Decoreba de prazos (PAD, Licitação) e Súmulas.","metodo_sugerido":"Leitura de Resumos / Destaques"},{"materia":"DIREITO ADMINISTRATIVO","topico":"Semana da Prova: Agentes Públicos e Improbidade","prioridade":"CRÍTICA","justificativa":"Peso 3. Reforço de memória de curto prazo.","metodo_sugerido":"Lei Seca"}],"terca":[{"materia":"DIREITO CIVIL / PROCESSUAL CIVIL","topico":"Semana da Prova: Prazos, JEC e Sujeitos","prioridade":"CRÍTICA","justificativa":"Peso 3. Prazos do JECRIM/Fazenda (dias úteis vs corridos).","metodo_sugerido":"Tabelas de Prazos"},{"materia":"DIREITO CIVIL","topico":"Semana da Prova: Coisas e Contratos","prioridade":"CRÍTICA","justificativa":"Peso 3. Memória de curto prazo para Alienação Fiduciária (9.514).","metodo_sugerido":"Lei Seca"}],"quarta":[{"materia":"DIREITO PENAL","topico":"Semana da Prova: Crimes Adm e Leis","prioridade":"CRÍTICA","justificativa":"Peso 3. Consolidar os eixos centrais criminais.","metodo_sugerido":"Mnemônicos"},{"materia":"DIREITO PROCESSUAL PENAL","topico":"Semana da Prova: Prazos Prisões e Júri","prioridade":"CRÍTICA","justificativa":"Peso 3. Prazos em horas do flagrante, custódia e preventiva.","metodo_sugerido":"Tabelas e Leitura Ativa"}],"quinta":[{"materia":"CONHECIMENTOS GERAIS","topico":"Semana da Prova: Português e RLM","prioridade":"PRIORIDADE","justificativa":"Peso 1. Aquecimento lógico e leitura de conjunções.","metodo_sugerido":"Exercícios Leves"},{"materia":"LEGISLAÇÃO E PCD","topico":"Semana da Prova: LOJ, Estatuto e PCD","prioridade":"PRIORIDADE","justificativa":"Peso 1. Memorização cirúrgica de última hora das locais.","metodo_sugerido":"Lei Seca"}],"sexta":[{"materia":"REVISÃO GERAL","topico":"VÉSPERA: Leitura de Grifos, Cadernos e Vésperas de Curso","prioridade":"CRÍTICA","justificativa":"Visualização passiva de resumos curtos para memória recente. (07/08)","metodo_sugerido":"Visualização Passiva"}],"sabado":[{"materia":"DESCANSO","topico":"Descanso e Preparação Psicológica","prioridade":"RESIDUAL","justificativa":"Véspera do dia da prova (08/08). Atenuação total do conteúdo.","metodo_sugerido":"Lazer e Descanso"}],"domingo":[]}
+};
+
+const DAYS_PT = { segunda:'Segunda-feira', terca:'Terça-feira', quarta:'Quarta-feira', quinta:'Quinta-feira', sexta:'Sexta-feira', sabado:'Sábado', domingo:'Domingo' };
+const DAYS_ORDER = ['segunda','terca','quarta','quinta','sexta','sabado','domingo'];
+
+let state = {};
+let sessions = [];
+let currentWeek = 1;
+let currentView = 'dias';
+let dragItem = null, dragOrigin = null;
+
+function loadState() {
+  try {
+    const s = localStorage.getItem('taina_tjce_state');
+    if (s) state = JSON.parse(s);
+    const ss = localStorage.getItem('taina_tjce_sessions');
+    if (ss) sessions = JSON.parse(ss);
+  } catch(e) {}
+  for (let w = 1; w <= 11; w++) {
+    const wk = `semana_${w}`;
+    if (!state[wk]) state[wk] = {};
+    for (const day of DAYS_ORDER) {
+      const items = RAW_SCHEDULE[wk]?.[day] || [];
+      if (!state[wk][day]) state[wk][day] = items.map((item, i) => ({
+        ...item,
+        id: `${wk}_${day}_${i}`,
+        status: 'pendente',
+        method: item.metodo_sugerido || 'Lei Seca'
+      }));
+    }
+  }
+}
+
+function saveState() {
+  localStorage.setItem('taina_tjce_state', JSON.stringify(state));
+  localStorage.setItem('taina_tjce_sessions', JSON.stringify(sessions));
+}
+
+function updateCountdown() {
+  const now = new Date();
+  const diff = EXAM_DATE - now;
+  const days = Math.max(0, Math.ceil(diff / (1000*60*60*24)));
+  document.getElementById('countdown-days').textContent = days;
+}
+
+function calcProgress() {
+  let total = 0, done = 0;
+  for (const wk of Object.values(state)) {
+    for (const day of Object.values(wk)) {
+      for (const item of day) {
+        total++;
+        if (item.status === 'finalizado') done++;
+      }
+    }
+  }
+  return { total, done, pct: total ? Math.round(done/total*100) : 0 };
+}
+
+function updateProgress() {
+  const { done, total, pct } = calcProgress();
+  document.getElementById('global-progress-bar').style.width = pct + '%';
+  document.getElementById('global-progress-text').textContent = `${pct}% concluído (${done}/${total})`;
+}
+
+function getItem(wk, day, id) {
+  return state[wk][day].find(x => x.id === id);
+}
+
+function getPriorityClass(p) {
+  if (p === 'CRÍTICA') return 'critica';
+  if (p === 'PRIORIDADE') return 'prioridade';
+  return 'residual';
+}
+
+// SIMPLIFIED CARD — check button only
+function renderCard(item, wk, day) {
+  const color = getColorForMateria(item.materia);
+  const pClass = getPriorityClass(item.prioridade);
+  const isDone = item.status === 'finalizado';
+
+  return `<div class="study-card status-${item.status}"
+      id="card-${item.id}"
+      draggable="true"
+      data-id="${item.id}" data-wk="${wk}" data-day="${day}"
+      ondragstart="onDragStart(event)" ondragend="onDragEnd(event)">
+    <button class="card-check ${isDone ? 'checked' : ''}"
+      onclick="toggleCheck('${wk}','${day}','${item.id}')"
+      title="${isDone ? 'Desmarcar' : 'Marcar como concluído'}">
+      ${isDone ? '✓' : ''}
+    </button>
+    <div class="card-body">
+      <div class="card-tags">
+        <span class="tag" style="background:${color}20;color:${color};border:1px solid ${color}40">${item.materia}</span>
+        <span class="tag tag-${pClass}">${item.prioridade}</span>
+      </div>
+      <div class="card-topic">${item.topico}</div>
+      <div class="card-justif">${item.justificativa}</div>
+    </div>
+  </div>`;
+}
+
+function toggleCheck(wk, day, id) {
+  const item = getItem(wk, day, id);
+  if (!item) return;
+  const newStatus = item.status === 'finalizado' ? 'pendente' : 'finalizado';
+  item.status = newStatus;
+  saveState();
+  updateProgress();
+  updateStatsTab();
+
+  // Update card in-place
+  const card = document.getElementById(`card-${id}`);
+  if (card) {
+    card.className = `study-card status-${newStatus}`;
+    card.setAttribute('draggable','true');
+    card.dataset.id = id; card.dataset.wk = wk; card.dataset.day = day;
+    const btn = card.querySelector('.card-check');
+    if (btn) {
+      btn.className = `card-check ${newStatus === 'finalizado' ? 'checked' : ''}`;
+      btn.textContent = newStatus === 'finalizado' ? '✓' : '';
+      btn.title = newStatus === 'finalizado' ? 'Desmarcar' : 'Marcar como concluído';
+    }
+    const topic = card.querySelector('.card-topic');
+    if (topic) topic.style.textDecoration = newStatus === 'finalizado' ? 'line-through' : '';
+  }
+
+  if (newStatus === 'finalizado') {
+    showToast('✅ Concluído!', 'success');
+  } else {
+    showToast('↩️ Desmarcado.', 'info');
+  }
+}
+
+function renderWeekTabs() {
+  const c = document.getElementById('week-tabs');
+  c.innerHTML = Array.from({length:11},(_,i) => {
+    const w = i+1;
+    const label = w === 11 ? `S${w} 🔥 Semana da Prova` : `Semana ${w}`;
+    return `<button class="week-tab ${currentWeek===w?'active':''}" onclick="selectWeek(${w})">${label}</button>`;
+  }).join('');
+}
+
+function selectWeek(w) {
+  currentWeek = w;
+  renderWeekTabs();
+  renderWeekContent();
+}
+
+function renderWeekContent() {
+  const c = document.getElementById('week-content');
+  const wk = `semana_${currentWeek}`;
+  if (currentView === 'dias') renderDaysView(c, wk);
+  else renderKanbanView(c, wk);
+}
+
+function renderDaysView(container, wk) {
+  const days = DAYS_ORDER.filter(d => (state[wk][d] || []).length > 0);
+  if (!days.length) { container.innerHTML = '<div class="empty">Nenhum tópico para esta semana.</div>'; return; }
+  container.innerHTML = `<div class="days-grid">${days.map(day => {
+    const items = state[wk][day] || [];
+    return `<div class="day-column">
+      <div class="day-header">
+        <span class="day-name">${DAYS_PT[day]}</span>
+        <span class="day-count">${items.length} tópico${items.length!==1?'s':''}</span>
+      </div>
+      <div class="day-body" id="dayb-${wk}-${day}"
+        ondragover="onDragOver(event)" ondrop="onDrop(event,'${wk}','${day}')" ondragleave="onDragLeave(event)">
+        ${items.length ? items.map(item => renderCard(item, wk, day)).join('') : '<div class="empty">Dia livre ☕</div>'}
+      </div>
+    </div>`;
+  }).join('')}</div>`;
+}
+
+function renderKanbanView(container, wk) {
+  const cols = [
+    { id: 'pendente', label: '⬜ Pendente', color: '#94a3b8' },
+    { id: 'finalizado', label: '✅ Finalizado', color: '#22c55e' }
+  ];
+  let allItems = [];
+  for (const day of DAYS_ORDER) {
+    for (const item of (state[wk][day] || [])) allItems.push({...item, _day: day});
+  }
+  container.innerHTML = `<div class="kanban-board" style="grid-template-columns:repeat(2,1fr)">
+    ${cols.map(col => {
+      const items = allItems.filter(x => x.status === col.id);
+      return `<div class="kanban-col">
+        <div class="kanban-col-header">
+          <span class="kanban-col-dot" style="background:${col.color}"></span>
+          <span class="kanban-col-title">${col.label}</span>
+          <span class="kanban-col-count">${items.length}</span>
+        </div>
+        <div class="kanban-body" id="kb-${wk}-${col.id}">
+          ${items.length ? items.map(item => renderCard(item, wk, item._day)).join('') : '<div class="empty">Vazio</div>'}
+        </div>
+      </div>`;
+    }).join('')}
+  </div>`;
+}
+
+function onDragStart(e) {
+  dragItem = e.currentTarget;
+  dragOrigin = { wk: dragItem.dataset.wk, day: dragItem.dataset.day, id: dragItem.dataset.id };
+  dragItem.classList.add('dragging');
+  e.dataTransfer.effectAllowed = 'move';
+}
+function onDragEnd(e) {
+  if (dragItem) dragItem.classList.remove('dragging');
+  dragItem = null; dragOrigin = null;
+  document.querySelectorAll('.drag-over').forEach(el => el.classList.remove('drag-over'));
+}
+function onDragOver(e) { e.preventDefault(); e.currentTarget.classList.add('drag-over'); }
+function onDragLeave(e) { e.currentTarget.classList.remove('drag-over'); }
+function onDrop(e, wk, day) {
+  e.preventDefault();
+  e.currentTarget.classList.remove('drag-over');
+  if (!dragOrigin) return;
+  const { wk: owk, day: oday, id } = dragOrigin;
+  if (owk !== wk || oday !== day) {
+    const idx = state[owk][oday].findIndex(x => x.id === id);
+    if (idx !== -1) {
+      const [item] = state[owk][oday].splice(idx, 1);
+      item.id = `${wk}_${day}_${Date.now()}`;
+      state[wk][day].push(item);
+      saveState();
+      renderWeekContent();
+      showToast('📦 Tópico movido!', 'info');
+    }
+  }
+}
+
+function renderCiclosTab() {
+  const materiaData = {};
+  for (const wk of Object.values(state)) {
+    for (const day of Object.values(wk)) {
+      for (const item of day) {
+        const m = item.materia;
+        if (!materiaData[m]) materiaData[m] = { topics: [], done: 0, total: 0 };
+        materiaData[m].topics.push(item);
+        materiaData[m].total++;
+        if (item.status === 'finalizado') materiaData[m].done++;
+      }
+    }
+  }
+  const c = document.getElementById('cycles-grid');
+  c.innerHTML = Object.entries(materiaData).map(([m, d]) => {
+    const color = getColorForMateria(m);
+    const pct = d.total ? Math.round(d.done/d.total*100) : 0;
+    const topicSample = [...new Set(d.topics.map(t => t.topico))].slice(0, 4);
+    return `<div class="cycle-card">
+      <div class="cycle-materia" style="color:${color}">${m}</div>
+      <div class="cycle-bar-wrap"><div class="cycle-bar" style="background:${color};width:${pct}%"></div></div>
+      <div class="cycle-stats">
+        <span>${d.done}/${d.total} tópicos</span>
+        <span style="font-weight:700;color:${color}">${pct}%</span>
+      </div>
+      <div class="cycle-topics">
+        ${topicSample.map(t => `<div class="cycle-topic-row"><span class="dot" style="background:${color}"></span>${t}</div>`).join('')}
+        ${d.topics.length > 4 ? `<div style="font-size:11px;color:var(--text3);padding:3px 6px">+${d.topics.length-4} outros tópicos</div>` : ''}
+      </div>
+    </div>`;
+  }).join('');
+}
+
+function renderMateriasTab() {
+  const materiaTopics = {};
+  for (let w = 1; w <= 11; w++) {
+    const wk = `semana_${w}`;
+    for (const day of DAYS_ORDER) {
+      for (const item of (state[wk][day] || [])) {
+        const m = item.materia;
+        if (!materiaTopics[m]) materiaTopics[m] = [];
+        materiaTopics[m].push({ ...item, week: w, day });
+      }
+    }
+  }
+  const c = document.getElementById('materias-list');
+  c.innerHTML = Object.entries(materiaTopics).map(([m, topics]) => {
+    const color = getColorForMateria(m);
+    const unique = [...new Map(topics.map(t => [t.topico, t])).values()];
+    return `<div class="materia-section" id="mat-${m.replace(/\s/g,'_').replace(/\//g,'_')}">
+      <div class="materia-section-header" onclick="toggleMateria('${m.replace(/\s/g,'_').replace(/\//g,'_')}')">
+        <span class="materia-section-color" style="background:${color}"></span>
+        <span class="materia-section-name" style="color:${color}">${m}</span>
+        <span class="materia-section-count">${unique.length} tópicos</span>
+        <span class="materia-chevron">▶</span>
+      </div>
+      <div class="materia-topics-list">
+        ${unique.map(t => `<div class="materia-topic-item">
+          <span class="week-badge">S${t.week} · ${DAYS_PT[t.day].slice(0,3)}</span>
+          <span class="materia-topic-text">${t.topico}</span>
+          <span class="tag tag-${getPriorityClass(t.prioridade)}">${t.prioridade}</span>
+        </div>`).join('')}
+      </div>
+    </div>`;
+  }).join('');
+}
+
+function toggleMateria(id) {
+  document.getElementById(`mat-${id}`)?.classList.toggle('open');
+}
+
+function updateStatsTab() {
+  const { done, total, pct } = calcProgress();
+  const finalizado = [], pendente = [];
+  for (let w = 1; w <= 11; w++) {
+    const wk = `semana_${w}`;
+    for (const day of DAYS_ORDER) {
+      for (const item of (state[wk][day] || [])) {
+        const obj = { item, wk, day, w };
+        if (item.status === 'finalizado') finalizado.push(obj);
+        else pendente.push(obj);
+      }
+    }
+  }
+  document.getElementById('stats-header').innerHTML = `
+    <div class="stat-card"><div class="stat-number">${total}</div><div class="stat-label">Total de Tópicos</div></div>
+    <div class="stat-card"><div class="stat-number" style="color:#22c55e">${done}</div><div class="stat-label">Concluídos</div><div class="stat-sub">${pct}%</div></div>
+    <div class="stat-card"><div class="stat-number" style="color:#94a3b8">${pendente.length}</div><div class="stat-label">Pendentes</div></div>
+  `;
+  const renderItems = (arr) => arr.length ? arr.slice(0,30).map(({item, w}) => {
+    const color = getColorForMateria(item.materia);
+    return `<div class="stats-item">
+      <span class="dot" style="background:${color}"></span>
+      <span>${item.topico}</span>
+      <span class="stats-item-week">S${w}</span>
+    </div>`;
+  }).join('') + (arr.length > 30 ? `<div class="empty">+${arr.length-30} itens</div>` : '') : '<div class="empty">Nenhum item</div>';
+  document.getElementById('stats-kanban').innerHTML = `
+    <div class="stats-col" style="grid-column:1/2">
+      <div class="stats-col-header"><span class="stats-col-dot" style="background:#94a3b8"></span><span class="stats-col-title">⬜ Pendentes</span><span class="stats-col-count">${pendente.length}</span></div>
+      <div class="stats-col-body">${renderItems(pendente)}</div>
+    </div>
+    <div class="stats-col" style="grid-column:2/4">
+      <div class="stats-col-header"><span class="stats-col-dot" style="background:#22c55e"></span><span class="stats-col-title">✅ Concluídos</span><span class="stats-col-count">${done}</span></div>
+      <div class="stats-col-body">${renderItems(finalizado)}</div>
+    </div>
+  `;
+}
+
+function buildErrInputs() {
+  const materias = [...new Set(Object.values(state).flatMap(wk => Object.values(wk).flatMap(day => day.map(i => i.materia))))];
+  document.getElementById('err-inputs').innerHTML = materias.map(m => `<div class="err-row">
+    <label>${m}</label>
+    <input type="number" min="0" placeholder="0" id="err-${m.replace(/[\s\/]/g,'_')}">
+  </div>`).join('');
+}
+
+function saveSession() {
+  const date = document.getElementById('perf-date').value;
+  const hours = document.getElementById('perf-hours').value;
+  const questions = parseInt(document.getElementById('perf-questions').value) || 0;
+  const notes = document.getElementById('perf-notes').value;
+  if (!date || !hours) { showToast('⚠️ Preencha data e horas!', 'danger'); return; }
+  const materias = [...new Set(Object.values(state).flatMap(wk => Object.values(wk).flatMap(day => day.map(i => i.materia))))];
+  const errors = {};
+  materias.forEach(m => {
+    const v = parseInt(document.getElementById(`err-${m.replace(/[\s\/]/g,'_')}`)?.value) || 0;
+    if (v > 0) errors[m] = v;
+  });
+  sessions.push({ date, hours, questions, errors, notes, ts: Date.now() });
+  saveState();
+  updatePerfDisplay();
+  showToast('💾 Sessão salva!', 'success');
+  document.getElementById('perf-hours').value = '';
+  document.getElementById('perf-questions').value = '';
+  document.getElementById('perf-notes').value = '';
+  document.querySelectorAll('.err-row input').forEach(el => el.value = '');
+}
+
+function parseHours(h) {
+  const m = h.match(/(\d+):(\d+)/);
+  if (m) return parseInt(m[1]) + parseInt(m[2])/60;
+  return parseFloat(h) || 0;
+}
+function fmtHours(h) {
+  const hrs = Math.floor(h);
+  const mins = Math.round((h - hrs) * 60);
+  return `${hrs}h${mins>0?mins+'m':''}`;
+}
+
+function updatePerfDisplay() {
+  const totalH = sessions.reduce((s, x) => s + parseHours(x.hours), 0);
+  const totalQ = sessions.reduce((s, x) => s + (x.questions||0), 0);
+  const totalErr = sessions.reduce((s, x) => s + Object.values(x.errors||{}).reduce((a,b)=>a+b,0), 0);
+  const acc = totalQ ? Math.round((totalQ-totalErr)/totalQ*100) : null;
+  document.getElementById('total-hours-display').textContent = fmtHours(totalH);
+  document.getElementById('total-questions-display').textContent = totalQ;
+  document.getElementById('total-accuracy-display').textContent = acc !== null ? acc+'%' : '—';
+  const log = document.getElementById('perf-log');
+  if (!sessions.length) { log.innerHTML = '<div class="empty">Nenhuma sessão registrada ainda.</div>'; return; }
+  log.innerHTML = [...sessions].reverse().map(s => {
+    const errStr = Object.entries(s.errors||{}).map(([k,v]) => `${k}: ${v} erros`).join(', ');
+    return `<div class="perf-log-item">
+      <div><div class="log-date">${s.date}</div><div class="log-hours">${s.hours}</div></div>
+      <div class="log-content">
+        <strong>${s.questions||0} questões</strong>${errStr?` · ${errStr}`:''}
+        ${s.notes?`<br><em style="color:var(--text3)">${s.notes}</em>`:''}
+      </div>
+    </div>`;
+  }).join('');
+}
+
+function showToast(msg, type='info') {
+  const c = document.getElementById('toast-container');
+  const t = document.createElement('div');
+  t.className = `toast ${type}`;
+  t.textContent = msg;
+  c.appendChild(t);
+  setTimeout(() => t.remove(), 2500);
+}
+
+document.querySelectorAll('.main-tab').forEach(btn => {
+  btn.addEventListener('click', () => {
+    document.querySelectorAll('.main-tab').forEach(b => b.classList.remove('active'));
+    document.querySelectorAll('.tab-panel').forEach(p => p.classList.remove('active'));
+    btn.classList.add('active');
+    const tab = btn.dataset.tab;
+    document.getElementById(`tab-${tab}`).classList.add('active');
+    if (tab === 'ciclos') renderCiclosTab();
+    if (tab === 'materias') renderMateriasTab();
+    if (tab === 'estatisticas') updateStatsTab();
+    if (tab === 'desempenho') { buildErrInputs(); updatePerfDisplay(); }
+  });
+});
+
+document.getElementById('btn-view-dias').addEventListener('click', () => {
+  currentView = 'dias';
+  document.getElementById('btn-view-dias').classList.add('active');
+  document.getElementById('btn-view-kanban').classList.remove('active');
+  renderWeekContent();
+});
+document.getElementById('btn-view-kanban').addEventListener('click', () => {
+  currentView = 'kanban';
+  document.getElementById('btn-view-kanban').classList.add('active');
+  document.getElementById('btn-view-dias').classList.remove('active');
+  renderWeekContent();
+});
+
+document.getElementById('dark-toggle').addEventListener('click', () => {
+  const isDark = document.documentElement.getAttribute('data-theme') === 'dark';
+  document.documentElement.setAttribute('data-theme', isDark ? 'light' : 'dark');
+  document.getElementById('dark-toggle').textContent = isDark ? '🌙' : '☀️';
+  localStorage.setItem('taina_tjce_theme', isDark ? 'light' : 'dark');
+});
+
+function init() {
+  const theme = localStorage.getItem('taina_tjce_theme') || 'light';
+  document.documentElement.setAttribute('data-theme', theme);
+  document.getElementById('dark-toggle').textContent = theme === 'dark' ? '☀️' : '🌙';
+  loadState();
+  document.getElementById('perf-date').value = new Date().toISOString().split('T')[0];
+  updateCountdown();
+  setInterval(updateCountdown, 60000);
+  updateProgress();
+  renderWeekTabs();
+  renderWeekContent();
+}
+
+init();
+</script>
+</body>
+</html>
